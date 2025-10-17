@@ -1,0 +1,25 @@
+// Server restart helper
+console.log('🔄 Server Restart Instructions');
+console.log('================================');
+console.log('');
+console.log('1. Stop the current server:');
+console.log('   Press Ctrl+C in the terminal running the server');
+console.log('');
+console.log('2. Start the server again:');
+console.log('   npm run server:dev');
+console.log('');
+console.log('3. Look for these success messages:');
+console.log('   ✅ MongoDB Connected');
+console.log('   ✅ 🚗 Tushar Automobiles Server running on http://localhost:4000');
+console.log('');
+console.log('4. Test the fix:');
+console.log('   - Go to http://localhost:3000/signin');
+console.log('   - Try logging in with: customer@test.com / Customer@123');
+console.log('   - Check browser console for "Attempting login to:" message');
+console.log('   - Should see success toast notification');
+console.log('');
+console.log('🔍 If still having issues:');
+console.log('   - Check browser Network tab for CORS headers');
+console.log('   - Look for server console logs showing CORS Debug messages');
+console.log('   - Try clearing browser cache (Ctrl+Shift+R)');
+console.log('   - Try incognito/private browsing mode');
