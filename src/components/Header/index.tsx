@@ -5,7 +5,7 @@ import { useAppSelector } from "@/redux/store";
 import { useAuth } from "@/context/AuthContext";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useSelector } from "react-redux";
 import CustomSelect from "./CustomSelect";
 import Dropdown from "./Dropdown";
@@ -28,7 +28,7 @@ const Header = () => {
   };
 
   // Scroll behavior - hide header on scroll down, show on scroll up
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     
     const currentScrollY = window.scrollY;
     
@@ -48,7 +48,7 @@ const Header = () => {
     }
     
     setLastScrollY(currentScrollY);
-  };
+  }, [lastScrollY]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, { passive: true });

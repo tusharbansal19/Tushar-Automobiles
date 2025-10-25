@@ -46,7 +46,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
 
   // Get unique brands for filter
   const availableBrands = useMemo(() => {
-    const brands = [...new Set(baseProducts.map(p => p.brand))];
+    const brands = Array.from(new Set(baseProducts.map(p => p.brand)));
     return brands.sort();
   }, [baseProducts]);
 
