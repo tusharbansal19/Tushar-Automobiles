@@ -5,6 +5,7 @@ import { selectTotalPrice } from "@/redux/features/cart-slice";
 import { useAppSelector } from "@/redux/store";
 import { useAuth } from "@/context/AuthContext";
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import CustomSelect from "./CustomSelect";
@@ -55,7 +56,7 @@ const ResponsiveHeader = () => {
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, [handleScroll]);
 
   const options = [
     { label: "All Categories", value: "0" },
@@ -85,9 +86,11 @@ const ResponsiveHeader = () => {
             <div className="flex items-center gap-8">
               {/* Logo */}
               <Link href="/" className="flex-shrink-0">
-                <img
+                <Image
                   src="/images/logo.png"
                   alt="Tushar Automobiles"
+                  width={64}
+                  height={32}
                   className="w-16 h-8 object-contain"
                   onError={(e) => {
                     e.currentTarget.src = '/logo.png';

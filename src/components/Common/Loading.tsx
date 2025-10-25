@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 interface LoadingProps {
   onLoadingComplete?: () => void;
@@ -70,9 +71,11 @@ export default function Loading({
         {/* Logo */}
         <div className="mb-8">
           <div className="relative inline-block">
-            <img
+            <Image
               src="/images/logo.png"
               alt="Tushar Automobiles"
+              width={160}
+              height={120}
               className="w-32 h-auto md:w-40 object-contain"
               onError={(e) => {
                 e.currentTarget.src = '/logo.png';

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 export default function PageLoader() {
   const [loading, setLoading] = useState(true);
@@ -98,9 +99,11 @@ export default function PageLoader() {
         {/* Logo container with smooth scale animation - Perfectly Centered */}
         <div className="relative animate-scale-pulse-smooth flex items-center justify-center">
           <div className="bg-white rounded-3xl p-8 md:p-12 shadow-2xl border-4 border-red-500/30 backdrop-blur-sm flex items-center justify-center">
-            <img
+            <Image
               src="/images/logo.png"
               alt="Tushar Automobiles"
+              width={288}
+              height={200}
               className="w-56 h-auto md:w-72 transition-all duration-300 block mx-auto"
             />
           </div>

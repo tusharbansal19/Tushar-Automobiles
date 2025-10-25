@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 interface PageLoaderProps {
     onLoadingComplete?: () => void;
@@ -195,9 +196,11 @@ export default function PageLoader({
                         {/* Logo with multiple fallbacks */}
                         <div className="relative w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 flex items-center justify-center">
                             {!logoError ? (
-                                <img
+                                <Image
                                     src="/images/logo.png"
                                     alt="Logo"
+                                    width={128}
+                                    height={128}
                                     className={`w-full h-full object-contain filter  transition-opacity duration-300 ${logoLoaded ? 'opacity-100' : 'opacity-0'}`}
                                     onError={(e) => {
                                         console.log('Primary logo failed, trying fallback');

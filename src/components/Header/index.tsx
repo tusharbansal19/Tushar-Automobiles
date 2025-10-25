@@ -4,6 +4,7 @@ import { selectTotalPrice } from "@/redux/features/cart-slice";
 import { useAppSelector } from "@/redux/store";
 import { useAuth } from "@/context/AuthContext";
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import CustomSelect from "./CustomSelect";
@@ -52,7 +53,7 @@ const Header = () => {
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, [handleScroll]);
 
   const options = [
     { label: "All Categories", value: "0" },
@@ -84,14 +85,12 @@ const Header = () => {
           {/* <!-- header top left --> */}
           <div className="xl:w-auto flex-col sm:flex-row w-full flex sm:justify-between sm:items-center gap-5 sm:gap-10">
             <Link className="flex-shrink-0" href="/">
-              <img
+              <Image
                 src="/images/logo.png"
                 alt="Tushar Automobiles Logo"
-                // height={15}
-               
-                width={25}
+                height={40}
+                width={80}
                 className="w-10 md:w-20 h-5 md:h-10 h-full"
-           
               />
             </Link>
 

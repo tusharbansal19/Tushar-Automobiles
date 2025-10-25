@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 
 const AboutPage = () => {
     return (
@@ -23,9 +24,11 @@ const AboutPage = () => {
                             <div className="border-b border-gray-200 pb-6">
                                 <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
                                     <div className="w-20 h-20 lg:w-24 lg:h-24 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg overflow-hidden">
-                                        <img
+                                        <Image
                                             src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face&auto=format"
                                             alt="Umesh Kumar"
+                                            width={150}
+                                            height={150}
                                             className="w-full h-full object-cover"
                                             onError={(e) => {
                                                 const target = e.currentTarget as HTMLImageElement;
@@ -72,9 +75,11 @@ const AboutPage = () => {
                             <div className="border-b border-gray-200 pb-6">
                                 <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
                                     <div className="w-20 h-20 lg:w-24 lg:h-24 bg-gradient-to-br from-green-500 to-green-700 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg overflow-hidden">
-                                        <img
+                                        <Image
                                             src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face&auto=format"
                                             alt="Tushar Bansal"
+                                            width={150}
+                                            height={150}
                                             className="w-full h-full object-cover"
                                             onError={(e) => {
                                                 const target = e.currentTarget as HTMLImageElement;
@@ -121,9 +126,11 @@ const AboutPage = () => {
                             <div>
                                 <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
                                     <div className="w-20 h-20 lg:w-24 lg:h-24 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg overflow-hidden">
-                                        <img
+                                        <Image
                                             src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=150&h=150&fit=crop&crop=face&auto=format"
                                             alt="Dev Bansal"
+                                            width={150}
+                                            height={150}
                                             className="w-full h-full object-cover"
                                             onError={(e) => {
                                                 const target = e.currentTarget as HTMLImageElement;
@@ -313,7 +320,7 @@ const AboutPage = () => {
                             <p className="text-gray-600 leading-relaxed">
                                 Founded in 1994 by Shri Umesh Kumar, our automotive center began as a small family business
                                 with a vision to provide reliable and affordable automotive solutions to our community.
-                                What started as a modest workshop has grown into one of the region's most trusted automotive
+                                What started as a modest workshop has grown into one of the region&apos;s most trusted automotive
                                 service centers.
                             </p>
                             <p className="text-gray-600 leading-relaxed">
@@ -325,7 +332,7 @@ const AboutPage = () => {
                             <p className="text-gray-600 leading-relaxed">
                                 Today, we combine traditional automotive expertise with cutting-edge diagnostic equipment
                                 and digital solutions, ensuring that every customer receives the highest quality service
-                                for their vehicle, whether it's a classic car or the latest model.
+                                for their vehicle, whether it&apos;s a classic car or the latest model.
                             </p>
                         </div>
                     </div>
@@ -391,9 +398,11 @@ const AboutPage = () => {
                         {/* Service Bay */}
                         <div className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
                             <div className="aspect-w-16 aspect-h-12 bg-gradient-to-br from-blue-100 to-blue-200">
-                                <img
+                                <Image
                                     src="https://images.unsplash.com/photo-1486754735734-325b5831c3ad?w=400&h=300&fit=crop&auto=format"
                                     alt="Service Bay"
+                                    width={400}
+                                    height={300}
                                     className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                                     onError={(e) => {
                                         const target = e.currentTarget as HTMLImageElement;
@@ -412,9 +421,11 @@ const AboutPage = () => {
                         {/* Parts Inventory */}
                         <div className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
                             <div className="aspect-w-16 aspect-h-12 bg-gradient-to-br from-green-100 to-green-200">
-                                <img
+                                <Image
                                     src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop&auto=format"
                                     alt="Parts Inventory"
+                                    width={400}
+                                    height={300}
                                     className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                                     onError={(e) => {
                                         const target = e.currentTarget as HTMLImageElement;
@@ -433,9 +444,11 @@ const AboutPage = () => {
                         {/* Diagnostic Center */}
                         <div className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
                             <div className="aspect-w-16 aspect-h-12 bg-gradient-to-br from-purple-100 to-purple-200">
-                                <img
+                                <Image
                                     src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=400&h=300&fit=crop&auto=format"
                                     alt="Diagnostic Center"
+                                    width={400}
+                                    height={300}
                                     className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                                     onError={(e) => {
                                         const target = e.currentTarget as HTMLImageElement;
@@ -454,9 +467,11 @@ const AboutPage = () => {
                         {/* Customer Lounge */}
                         <div className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
                             <div className="aspect-w-16 aspect-h-12 bg-gradient-to-br from-orange-100 to-orange-200">
-                                <img
+                                <Image
                                     src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop&auto=format"
                                     alt="Customer Lounge"
+                                    width={400}
+                                    height={300}
                                     className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                                     onError={(e) => {
                                         const target = e.currentTarget as HTMLImageElement;
@@ -475,9 +490,11 @@ const AboutPage = () => {
                         {/* Tire & Wheel Center */}
                         <div className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
                             <div className="aspect-w-16 aspect-h-12 bg-gradient-to-br from-red-100 to-red-200">
-                                <img
+                                <Image
                                     src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop&auto=format"
                                     alt="Tire Center"
+                                    width={400}
+                                    height={300}
                                     className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                                     onError={(e) => {
                                         const target = e.currentTarget as HTMLImageElement;
@@ -496,9 +513,11 @@ const AboutPage = () => {
                         {/* Oil Change Station */}
                         <div className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
                             <div className="aspect-w-16 aspect-h-12 bg-gradient-to-br from-indigo-100 to-indigo-200">
-                                <img
+                                <Image
                                     src="https://images.unsplash.com/photo-1632823471565-1ecdf7c5e3e5?w=400&h=300&fit=crop&auto=format"
                                     alt="Oil Change Station"
+                                    width={400}
+                                    height={300}
                                     className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                                     onError={(e) => {
                                         const target = e.currentTarget as HTMLImageElement;
