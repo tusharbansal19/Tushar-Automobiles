@@ -177,7 +177,7 @@ const ProductItem = ({ item }: { item: Product }) => {
         className="font-medium text-dark ease-out duration-200 hover:text-blue mb-1.5"
         onClick={() => handleProductDetails()}
       >
-        <Link href={`/auto-parts/${item._id || item.id}`}> {item.title} </Link>
+        <Link href={`/auto-parts/${item.id}`}> {item.title} </Link>
       </h3>
 
       <div className="mb-2">
