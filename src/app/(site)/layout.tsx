@@ -29,70 +29,61 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" suppressHydrationWarning={true}>
-      <head>
-        <link
-          rel="icon"
-          href="/images/logo.png"
-          type="image/png"
+    <>
+      {loading ? (
+        <PageLoader 
+          onLoadingComplete={handleLoadingComplete}
+          duration={3000}
         />
-      </head>
-      <body>
-        {loading ? (
-          <PageLoader 
-            onLoadingComplete={handleLoadingComplete}
-            duration={3000}
-          />
-        ) : (
-          <>
-            <LoadingProvider>
-              <AuthProvider>
-                <ReduxProvider>
-                  <CartModalProvider>
-                    <ModalProvider>
-                      <PreviewSliderProvider>
-                        <Header />
-                        {children}
+      ) : (
+        <>
+          <LoadingProvider>
+            <AuthProvider>
+              <ReduxProvider>
+                <CartModalProvider>
+                  <ModalProvider>
+                    <PreviewSliderProvider>
+                      <Header />
+                      {children}
 
-                        <QuickViewModal />
-                        <CartSidebarModal />
-                        <PreviewSliderModal />
-                      </PreviewSliderProvider>
-                    </ModalProvider>
-                  </CartModalProvider>
-                </ReduxProvider>
-              </AuthProvider>
-            </LoadingProvider>
-            <ScrollToTop />
-            <Footer />
-            <Toaster
-              position="top-right"
-              toastOptions={{
-                duration: 4000,
-                style: {
-                  background: '#fff',
-                  color: '#333',
-                  border: '1px solid #e5e7eb',
-                  borderRadius: '8px',
-                  fontSize: '14px',
+                      <QuickViewModal />
+                      <CartSidebarModal />
+                      <PreviewSliderModal />
+                    </PreviewSliderProvider>
+                  </ModalProvider>
+                </CartModalProvider>
+              </ReduxProvider>
+            </AuthProvider>
+          </LoadingProvider>
+          <ScrollToTop />
+          <Footer />
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              duration: 4000,
+              style: {
+                background: '#fff',
+                color: '#333',
+                border: '1px solid #e5e7eb',
+                borderRadius: '8px',
+                fontSize: '14px',
+              },
+              success: {
+                iconTheme: {
+                  primary: '#ef4444',
+                  secondary: '#fff',
                 },
-                success: {
-                  iconTheme: {
-                    primary: '#ef4444',
-                    secondary: '#fff',
-                  },
+              },
+              error: {
+                iconTheme: {
+                  primary: '#ef4444',
+                  secondary: '#fff',
                 },
-                error: {
-                  iconTheme: {
-                    primary: '#ef4444',
-                    secondary: '#fff',
-                  },
-                },
-              }}
-            />
-          </>
-        )}
-      </body>
-    </html>
+              },
+            }}
+          />
+        </>
+      )}
+    </>
   );
 }
