@@ -1,5 +1,5 @@
 "use client";
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Breadcrumb from "../Common/Breadcrumb";
 import Image from "next/image";
 import Newsletter from "../Common/Newsletter";
@@ -75,15 +75,25 @@ const ShopDetails = () => {
 
   const colors = ["red", "blue", "orange", "pink", "purple"];
 
-  const alreadyExist = localStorage.getItem("productDetails");
+  const [product, setProduct] = useState(null);
   const productFromStorage = useAppSelector(
     (state) => state.productDetailsReducer.value
   );
 
-  const product = alreadyExist ? JSON.parse(alreadyExist) : productFromStorage;
+  useEffect(() => {
+    // Only access localStorage on the client side
+    if (typeof window !== 'undefined') {
+      const alreadyExist = localStorage.getItem("productDetails");
+      const productData = alreadyExist ? JSON.parse(alreadyExist) : productFromStorage;
+      setProduct(productData);
+    }
+  }, [productFromStorage]);
 
   useEffect(() => {
-    localStorage.setItem("productDetails", JSON.stringify(product));
+    // Only set localStorage on the client side and when product exists
+    if (typeof window !== 'undefined' && product) {
+      localStorage.setItem("productDetails", JSON.stringify(product));
+    }
   }, [product]);
 
   // pass the product here when you get the real data.
@@ -91,14 +101,22 @@ const ShopDetails = () => {
     openPreviewModal();
   };
 
-  console.log(product);
+  // Debug: Log product data
+  if (typeof window !== 'undefined' && product) {
+    console.log('Product data:', product);
+  }
 
   return (
     <>
       <Breadcrumb title={"Shop Details"} pages={["shop details"]} />
 
-      {product.title === "" ? (
-        "Please add product"
+      {!product || product.title === "" ? (
+        <div className="flex items-center justify-center min-h-[400px]">
+          <div className="text-center">
+            <h3 className="text-xl font-semibold text-gray-600 mb-2">No Product Selected</h3>
+            <p className="text-gray-500">Please select a product to view details.</p>
+          </div>
+        </div>
       ) : (
         <>
           <section className="overflow-hidden relative pb-20 pt-5 lg:pt-20 xl:pt-28">
