@@ -44,14 +44,14 @@ export default function PageLoader({
     // Logo preload effect
     useEffect(() => {
         const preloadLogo = () => {
-            const img = new Image();
+            const img = new window.Image();
             img.onload = () => {
                 console.log('Logo preloaded successfully');
                 setLogoLoaded(true);
             };
             img.onerror = () => {
                 console.log('Logo preload failed, trying fallback');
-                const fallbackImg = new Image();
+                const fallbackImg = new window.Image();
                 fallbackImg.onload = () => {
                     console.log('Fallback logo preloaded successfully');
                     setLogoLoaded(true);
