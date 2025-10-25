@@ -8,12 +8,20 @@ type InitialState = {
 const initialState = {
   value: {
     title: "",
+    brand: "",
+    category: "",
+    vehicleType: "",
+    company: "",
+    model: "",
+    fuelType: "",
+    transmission: "",
+    stockStatus: "in-stock" as const,
     reviews: 0,
     price: 0,
     discountedPrice: 0,
-    img: "",
     id: 0,
-    images: [],
+    partNumber: "",
+    warranty: "",
     imgs: { thumbnails: [], previews: [] },
   } as Product,
 } as InitialState;
