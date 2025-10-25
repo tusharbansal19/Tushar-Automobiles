@@ -2,12 +2,11 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 
 // Types
 export interface AutoPart {
-  _id: string;
+  id: string;
   title: string;
   brand: string;
   category: string;
   vehicleType: string;
-  vehicleName: string;
   company: string;
   model: string;
   variant?: string;

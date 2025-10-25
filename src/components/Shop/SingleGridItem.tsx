@@ -185,9 +185,9 @@ const SingleGridItem = ({ item }: { item: Product }) => {
             <>
               <span className="text-dark">₹{item.discountedPrice.toLocaleString()}</span>
               <span className="text-dark-4 line-through text-sm">₹{item.price.toLocaleString()}</span>
-              {item.discountPercentage && (
+              {item.discountedPrice && item.price > item.discountedPrice && (
                 <span className="text-green-600 text-xs bg-green-100 px-1 py-0.5 rounded">
-                  {item.discountPercentage}% OFF
+                  {Math.round(((item.price - item.discountedPrice) / item.price) * 100)}% OFF
                 </span>
               )}
             </>
