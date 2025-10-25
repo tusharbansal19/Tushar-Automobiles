@@ -1,5 +1,5 @@
 import PageLoader from "@/components/PageLoader";
 
 export default function Loading() {
-  return <PageLoader type="page" message="Loading sign up..." />;
+  return <PageLoader message="Loading sign up..." />;
 }
