@@ -17,8 +17,17 @@ const SingleItem = ({ item }) => {
   const handleAddToCart = () => {
     dispatch(
       addItemToCart({
-        ...item,
+        id: item.id,
+        title: item.title,
+        brand: item.brand,
+        partNumber: item.partNumber || 'N/A',
+        price: item.price,
+        discountedPrice: item.discountedPrice || item.price,
         quantity: 1,
+        category: item.category,
+        compatibleVehicles: item.compatibleVehicles,
+        warranty: item.warranty,
+        imgs: item.imgs,
       })
     );
   };
