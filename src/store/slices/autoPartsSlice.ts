@@ -229,12 +229,12 @@ export const fetchAllAutoParts = createAsyncThunk(
           
           // Convert autoProductsData to AutoPart format
           const fallbackParts: AutoPart[] = autoProductsData.map(product => ({
-            _id: product.id,
+            id: product.id,
             title: product.name,
             brand: product.brand,
             category: product.category,
             vehicleType: 'Car', // Default value
-            vehicleName: product.name.split(' ').slice(0, 2).join(' '), // Extract vehicle name
+            // vehicleName removed - use company + model instead
             company: product.brand,
             model: product.name.split(' ').slice(0, 2).join(''), // Extract model
             variant: 'Standard',
@@ -251,7 +251,7 @@ export const fetchAllAutoParts = createAsyncThunk(
               thumbnails: [product.image],
               previews: [product.image]
             },
-            discountPercentage: product.discount,
+            // discountPercentage removed - calculate dynamically
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString()
           }));
@@ -283,12 +283,12 @@ export const fetchAllAutoParts = createAsyncThunk(
         const { autoProductsData } = await import('@/data/autoProductsData');
         
         const fallbackParts: AutoPart[] = autoProductsData.map(product => ({
-          _id: product.id,
+          id: product.id,
           title: product.name,
           brand: product.brand,
           category: product.category,
           vehicleType: 'Car',
-          vehicleName: product.name.split(' ').slice(0, 2).join(' '),
+          // vehicleName removed - use company + model instead
           company: product.brand,
           model: product.name.split(' ').slice(0, 2).join(''),
           variant: 'Standard',
@@ -305,7 +305,7 @@ export const fetchAllAutoParts = createAsyncThunk(
             thumbnails: [product.image],
             previews: [product.image]
           },
-          discountPercentage: product.discount,
+          // discountPercentage removed - calculate dynamically
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString()
         }));

@@ -428,9 +428,9 @@ const ShopWithSidebar = () => {
                     >
                       {displayedParts.map((item, key) =>
                         productStyle === "grid" ? (
-                          <SingleGridItem item={item as any} key={item._id || key} />
+                          <SingleGridItem item={item as any} key={item.id || key} />
                         ) : (
-                          <SingleListItem item={item as any} key={item._id || key} />
+                          <SingleListItem item={item as any} key={item.id || key} />
                         )
                       )}
                     </div>

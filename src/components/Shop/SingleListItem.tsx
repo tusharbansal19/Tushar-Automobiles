@@ -24,7 +24,7 @@ const SingleListItem = ({ item }: { item: AutoPart }) => {
   const handleAddToCart = () => {
     dispatch(
       addItemToCart({
-        id: parseInt(item._id), // Convert _id to id for cart compatibility
+        id: parseInt(item.id), // Convert id for cart compatibility
         title: item.title,
         brand: item.brand,
         partNumber: item.partNumber,
@@ -32,7 +32,7 @@ const SingleListItem = ({ item }: { item: AutoPart }) => {
         discountedPrice: item.discountedPrice || item.price,
         quantity: 1,
         category: item.category,
-        compatibleVehicles: [item.vehicleName],
+        compatibleVehicles: [`${item.company} ${item.model}`],
         warranty: item.warranty,
         imgs: item.imgs,
       })
@@ -42,7 +42,7 @@ const SingleListItem = ({ item }: { item: AutoPart }) => {
   const handleItemToWishList = () => {
     dispatch(
       addItemToWishlist({
-        id: parseInt(item._id), // Convert _id to id for wishlist compatibility
+        id: parseInt(item.id), // Convert id for wishlist compatibility
         title: item.title,
         price: item.price,
         discountedPrice: item.discountedPrice || item.price,
@@ -137,12 +137,12 @@ const SingleListItem = ({ item }: { item: AutoPart }) => {
             </div>
 
             <h3 className="font-medium text-dark ease-out duration-200 hover:text-blue mb-2">
-              <Link href={`/auto-parts/${item._id}`}> {item.title} </Link>
+              <Link href={`/auto-parts/${item.id}`}> {item.title} </Link>
             </h3>
 
             <div className="mb-3">
               <p className="text-custom-sm text-gray-5 mb-1">
-                Compatible with: {item.vehicleName}
+                Compatible with: {item.company} {item.model}
               </p>
               <p className="text-custom-sm text-gray-5 mb-1">
                 {item.fuelType} • {item.transmission} • Part #: {item.partNumber}
@@ -160,9 +160,9 @@ const SingleListItem = ({ item }: { item: AutoPart }) => {
                   <>
                     <span className="text-dark">₹{item.discountedPrice.toLocaleString()}</span>
                     <span className="text-dark-4 line-through text-sm">₹{item.price.toLocaleString()}</span>
-                    {item.discountPercentage && (
+                    {item.discountedPrice && item.price > item.discountedPrice && (
                       <span className="text-green-600 text-xs bg-green-100 px-2 py-1 rounded">
-                        {item.discountPercentage}% OFF
+                        {Math.round(((item.price - item.discountedPrice) / item.price) * 100)}% OFF
                       </span>
                     )}
                   </>
