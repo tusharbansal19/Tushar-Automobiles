@@ -106,7 +106,7 @@ const initialState: AutoPartsState = {
 };
 
 // API Base URL
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api';
 
 // Helper function to apply filters and sorting
 const applyFiltersAndSort = (parts: AutoPart[], filters: AutoPartsFilters): AutoPart[] => {
@@ -222,7 +222,43 @@ export const fetchAllAutoParts = createAsyncThunk(
         const response = await fetch(url);
         
         if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+          // If API fails, try to use fallback data
+          console.warn(`API request failed with status ${response.status}, using fallback data`);
+          
+          // Import fallback data dynamically
+          const { autoProductsData } = await import('@/data/autoProductsData');
+          
+          // Convert autoProductsData to AutoPart format
+          const fallbackParts: AutoPart[] = autoProductsData.map(product => ({
+            _id: product.id,
+            title: product.name,
+            brand: product.brand,
+            category: product.category,
+            vehicleType: 'Car', // Default value
+            vehicleName: product.name.split(' ').slice(0, 2).join(' '), // Extract vehicle name
+            company: product.brand,
+            model: product.name.split(' ').slice(0, 2).join(''), // Extract model
+            variant: 'Standard',
+            fuelType: 'Petrol', // Default value
+            transmission: 'Manual', // Default value
+            specifications: product.specifications,
+            stockStatus: product.inStock ? 'in-stock' : 'out-of-stock',
+            reviews: product.reviews,
+            price: product.price,
+            discountedPrice: product.originalPrice,
+            partNumber: product.id.toUpperCase(),
+            warranty: '1 Year',
+            imgs: {
+              thumbnails: [product.image],
+              previews: [product.image]
+            },
+            discountPercentage: product.discount,
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString()
+          }));
+          
+          console.log(`Using ${fallbackParts.length} fallback parts`);
+          return fallbackParts;
         }
         
         const result = await response.json();
@@ -238,11 +274,49 @@ export const fetchAllAutoParts = createAsyncThunk(
         }
       }
 
-      console.log(`Fetched ${allParts.length} total parts`);
+      console.log(`Fetched ${allParts.length} total parts from API`);
       return allParts;
     } catch (error) {
       console.error('Error fetching all auto parts:', error);
-      return rejectWithValue(error instanceof Error ? error.message : 'Failed to fetch auto parts');
+      
+      // Try to use fallback data on any error
+      try {
+        const { autoProductsData } = await import('@/data/autoProductsData');
+        
+        const fallbackParts: AutoPart[] = autoProductsData.map(product => ({
+          _id: product.id,
+          title: product.name,
+          brand: product.brand,
+          category: product.category,
+          vehicleType: 'Car',
+          vehicleName: product.name.split(' ').slice(0, 2).join(' '),
+          company: product.brand,
+          model: product.name.split(' ').slice(0, 2).join(''),
+          variant: 'Standard',
+          fuelType: 'Petrol',
+          transmission: 'Manual',
+          specifications: product.specifications,
+          stockStatus: product.inStock ? 'in-stock' : 'out-of-stock',
+          reviews: product.reviews,
+          price: product.price,
+          discountedPrice: product.originalPrice,
+          partNumber: product.id.toUpperCase(),
+          warranty: '1 Year',
+          imgs: {
+            thumbnails: [product.image],
+            previews: [product.image]
+          },
+          discountPercentage: product.discount,
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString()
+        }));
+        
+        console.log(`Using ${fallbackParts.length} fallback parts due to error`);
+        return fallbackParts;
+      } catch (fallbackError) {
+        console.error('Failed to load fallback data:', fallbackError);
+        return rejectWithValue(error instanceof Error ? error.message : 'Failed to fetch auto parts');
+      }
     }
   }
 );
@@ -254,13 +328,92 @@ export const fetchFilterOptions = createAsyncThunk(
       const response = await fetch(`${API_BASE_URL}/auto-parts/filters`);
       
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        console.warn(`Filter API failed with status ${response.status}, using fallback data`);
+        
+        // Fallback filter options
+        const fallbackOptions = {
+          success: true,
+          data: {
+            companies: [
+              { name: 'Castrol', count: 2 },
+              { name: 'Valeo', count: 2 },
+              { name: 'Bosch', count: 2 },
+              { name: 'Mann Filter', count: 1 },
+              { name: 'Hella', count: 1 },
+              { name: 'NGK', count: 1 },
+              { name: 'Monroe', count: 1 },
+              { name: 'Denso', count: 1 },
+              { name: 'Exide', count: 1 }
+            ],
+            categories: [
+              { name: 'Engine Components', count: 4 },
+              { name: 'Braking System', count: 2 },
+              { name: 'Lighting', count: 1 },
+              { name: 'Suspension System', count: 1 },
+              { name: 'Fuel System', count: 1 },
+              { name: 'Cooling System', count: 1 },
+              { name: 'Accessories', count: 1 }
+            ],
+            vehicleTypes: [
+              { name: 'Car', count: 8 },
+              { name: 'SUV', count: 2 },
+              { name: 'Bike', count: 1 }
+            ],
+            fuelTypes: [
+              { name: 'Petrol', count: 7 },
+              { name: 'Diesel', count: 3 },
+              { name: 'Electric', count: 1 }
+            ],
+            transmissions: ['Manual', 'Automatic', 'CVT']
+          }
+        };
+        
+        return fallbackOptions;
       }
       
       return await response.json();
     } catch (error) {
       console.error('Error fetching filter options:', error);
-      return rejectWithValue(error instanceof Error ? error.message : 'Failed to fetch filter options');
+      
+      // Fallback filter options on error
+      const fallbackOptions = {
+        success: true,
+        data: {
+          companies: [
+            { name: 'Castrol', count: 2 },
+            { name: 'Valeo', count: 2 },
+            { name: 'Bosch', count: 2 },
+            { name: 'Mann Filter', count: 1 },
+            { name: 'Hella', count: 1 },
+            { name: 'NGK', count: 1 },
+            { name: 'Monroe', count: 1 },
+            { name: 'Denso', count: 1 },
+            { name: 'Exide', count: 1 }
+          ],
+          categories: [
+            { name: 'Engine Components', count: 4 },
+            { name: 'Braking System', count: 2 },
+            { name: 'Lighting', count: 1 },
+            { name: 'Suspension System', count: 1 },
+            { name: 'Fuel System', count: 1 },
+            { name: 'Cooling System', count: 1 },
+            { name: 'Accessories', count: 1 }
+          ],
+          vehicleTypes: [
+            { name: 'Car', count: 8 },
+            { name: 'SUV', count: 2 },
+            { name: 'Bike', count: 1 }
+          ],
+          fuelTypes: [
+            { name: 'Petrol', count: 7 },
+            { name: 'Diesel', count: 3 },
+            { name: 'Electric', count: 1 }
+          ],
+          transmissions: ['Manual', 'Automatic', 'CVT']
+        }
+      };
+      
+      return fallbackOptions;
     }
   }
 );

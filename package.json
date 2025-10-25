@@ -3,15 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "server": "node server/index.js",
-    "server:dev": "nodemon server/index.js",
+    "dev": "nodemon server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js",
+    "start:unified": "node start-unified.js",
+    "server:only": "nodemon server/index.js",
+    "frontend:only": "next dev",
     "seed": "node server/scripts/seedData.js",
     "seed:auto-parts": "node server/test-seeder.js",
-    "start:auto": "node start-server.js",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "echo \"No tests specified\" && exit 0"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.1",
