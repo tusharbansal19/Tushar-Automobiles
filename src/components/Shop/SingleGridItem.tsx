@@ -198,8 +198,7 @@ const SingleGridItem = ({ item }: { item: Product }) => {
         
         <div className="flex items-center gap-1">
           <div className={`w-2 h-2 rounded-full ${
-            item.stockStatus === 'in-stock' ? 'bg-green-500' : 
-            item.stockStatus === 'limited-stock' ? 'bg-yellow-500' : 'bg-red-500'
+            item.stockStatus === 'in-stock' ? 'bg-green-500' : 'bg-red-500'
           }`}></div>
           <span className="text-custom-xs text-gray-5 capitalize">
             {item.stockStatus.replace('-', ' ')}
