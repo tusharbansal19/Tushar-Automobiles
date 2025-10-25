@@ -169,12 +169,12 @@ const SingleGridItem = ({ item }: { item: Product }) => {
       </div>
 
       <h3 className="font-medium text-dark ease-out duration-200 hover:text-blue mb-1.5">
-        <Link href={`/auto-parts/${item._id}`}> {item.title} </Link>
+        <Link href={`/auto-parts/${item.id}`}> {item.title} </Link>
       </h3>
 
       <div className="mb-2">
         <p className="text-custom-sm text-gray-5">
-          For {item.vehicleName} • {item.fuelType} • {item.transmission}
+          For {item.company} {item.model} • {item.fuelType} • {item.transmission}
         </p>
         <p className="text-custom-xs text-gray-4">Part #: {item.partNumber}</p>
       </div>
