@@ -1,7 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
-
-export const dynamic = 'force-dynamic';
+import { useState } from "react";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import "../css/euclid-circular-a-font.css";
@@ -16,76 +14,61 @@ import { ModalProvider } from "../context/QuickViewModalContext";
 import { LoadingProvider } from "@/context/LoadingContext";
 import { AuthProvider } from "@/context/AuthContext";
 import ScrollToTop from "@/components/Common/ScrollToTop";
-import PageLoader from "@/components/PageLoader";
 import { Toaster } from "react-hot-toast";
+
+export const dynamic = 'force-dynamic';
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [loading, setLoading] = useState<boolean>(true);
-
-  const handleLoadingComplete = () => {
-    setLoading(false);
-  };
-
   return (
-    <>
-      {loading ? (
-        <PageLoader 
-          onLoadingComplete={handleLoadingComplete}
-          duration={3000}
-        />
-      ) : (
-        <>
-          <LoadingProvider>
-            <AuthProvider>
-              <ReduxProvider>
-                <CartModalProvider>
-                  <ModalProvider>
-                    <PreviewSliderProvider>
-                      <Header />
-                      {children}
-
-                      <QuickViewModal />
-                      <CartSidebarModal />
-                      <PreviewSliderModal />
-                    </PreviewSliderProvider>
-                  </ModalProvider>
-                </CartModalProvider>
-              </ReduxProvider>
-            </AuthProvider>
-          </LoadingProvider>
-          <ScrollToTop />
-          <Footer />
-          <Toaster
-            position="top-right"
-            toastOptions={{
-              duration: 4000,
-              style: {
-                background: '#fff',
-                color: '#333',
-                border: '1px solid #e5e7eb',
-                borderRadius: '8px',
-                fontSize: '14px',
-              },
-              success: {
-                iconTheme: {
-                  primary: '#ef4444',
-                  secondary: '#fff',
-                },
-              },
-              error: {
-                iconTheme: {
-                  primary: '#ef4444',
-                  secondary: '#fff',
-                },
-              },
-            }}
-          />
-        </>
-      )}
-    </>
+    <div style={{ minHeight: '100vh' }}>
+      <LoadingProvider>
+        <AuthProvider>
+          <ReduxProvider>
+            <CartModalProvider>
+              <ModalProvider>
+                <PreviewSliderProvider>
+                  <Header />
+                  {children}
+                  <QuickViewModal />
+                  <CartSidebarModal />
+                  <PreviewSliderModal />
+                </PreviewSliderProvider>
+              </ModalProvider>
+            </CartModalProvider>
+          </ReduxProvider>
+        </AuthProvider>
+      </LoadingProvider>
+      <ScrollToTop />
+      <Footer />
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          duration: 4000,
+          style: {
+            background: '#fff',
+            color: '#333',
+            border: '1px solid #e5e7eb',
+            borderRadius: '8px',
+            fontSize: '14px',
+          },
+          success: {
+            iconTheme: {
+              primary: '#ef4444',
+              secondary: '#fff',
+            },
+          },
+          error: {
+            iconTheme: {
+              primary: '#ef4444',
+              secondary: '#fff',
+            },
+          },
+        }}
+      />
+    </div>
   );
 }

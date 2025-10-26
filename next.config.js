@@ -9,12 +9,7 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  experimental: {
-    forceSwcTransforms: true,
-  },
-  compiler: {
-    removeConsole: process.env.NODE_ENV === 'production',
-  },
+  output: 'standalone',
   poweredByHeader: false,
   reactStrictMode: false,
 };
