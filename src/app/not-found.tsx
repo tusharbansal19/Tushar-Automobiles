@@ -17,7 +17,7 @@ export default function NotFound() {
             />
 
             <h2 className="font-medium text-dark text-xl sm:text-2xl mb-3">
-              Sorry, the page can't be found
+              Sorry, the page can&apos;t be found
             </h2>
 
             <p className="max-w-[410px] w-full mx-auto mb-7.5">
