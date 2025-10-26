@@ -1,6 +1,8 @@
 import Contact from "@/components/Contact";
 import { Metadata } from "next";
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: "Contact Us | Tushar Automobiles - Get in Touch",
   description: "Contact Tushar Automobiles for all your automotive needs. We provide quality spare parts, expert advice, and excellent customer service. Get in touch today!",

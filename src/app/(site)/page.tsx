@@ -1,6 +1,8 @@
 import Home from "@/components/Home";
 import { Metadata } from "next";
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: "Tushar Automobiles | Premium Auto Parts & Services",
   description: "Your trusted partner for quality automobile parts, engine oils, car accessories, and professional automotive services. Shop premium auto parts with fast delivery.",
