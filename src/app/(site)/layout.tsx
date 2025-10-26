@@ -1,5 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
+
+export const dynamic = 'force-dynamic';
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import "../css/euclid-circular-a-font.css";

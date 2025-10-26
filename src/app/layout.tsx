@@ -5,6 +5,9 @@ import './css/euclid-circular-a-font.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export const metadata: Metadata = {
   title: 'Tushar Automobiles - Premium Auto Parts',
   description: 'Your trusted source for high-quality automobile parts and accessories',
