@@ -27,7 +27,7 @@ if [ ! -f ".env.local" ]; then
     echo "⚠️  .env.local file not found. Creating template..."
     cat > .env.local << EOL
 # Next.js Environment Variables
-NEXT_PUBLIC_API_URL=http://localhost:4000/api
+NEXT_PUBLIC_API_URL=http://localhost:3000/api
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 
 # For production, update these URLs:

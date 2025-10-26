@@ -65,9 +65,11 @@ const Signup = () => {
       newErrors.password = 'Password is required';
     } else if (formData.password.length < 6) {
       newErrors.password = 'Password must be at least 6 characters long';
-    } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(formData.password)) {
-      newErrors.password = 'Password must contain at least one uppercase letter, one lowercase letter, and one number';
     }
+    // Temporarily removed complex password requirements for testing
+    // else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(formData.password)) {
+    //   newErrors.password = 'Password must contain at least one uppercase letter, one lowercase letter, and one number';
+    // }
 
     if (!formData.confirmPassword) {
       newErrors.confirmPassword = 'Please confirm your password';
@@ -271,7 +273,7 @@ const Signup = () => {
                     <p className="text-red text-sm mt-1">{errors.password}</p>
                   )}
                   <p className="text-dark-4 text-xs mt-1">
-                    Password must contain at least one uppercase, lowercase letter and number
+                    Password must be at least 6 characters long
                   </p>
                 </div>
 

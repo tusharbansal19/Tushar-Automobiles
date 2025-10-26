@@ -77,7 +77,6 @@ const autoPartsSchema = new mongoose.Schema({
   partNumber: {
     type: String,
     required: true,
-    unique: true,
     trim: true
   },
   warranty: {
@@ -114,7 +113,7 @@ autoPartsSchema.index({ vehicleType: 1 });
 autoPartsSchema.index({ fuelType: 1 });
 autoPartsSchema.index({ stockStatus: 1 });
 autoPartsSchema.index({ price: 1 });
-autoPartsSchema.index({ partNumber: 1 });
+autoPartsSchema.index({ partNumber: 1 }, { unique: true });
 
 // Virtual for calculating discount percentage
 autoPartsSchema.virtual('discountPercentage').get(function() {

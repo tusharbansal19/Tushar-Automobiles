@@ -16,11 +16,16 @@ const PORT = process.env.PORT || 4000;
 // Connect to MongoDB and seed data
 const initializeDatabase = async () => {
   try {
-    await connectDB();
-    console.log('🔄 Initializing auto parts database...');
-    await seedAutoPartsData();
+    const connection = await connectDB();
+    if (connection) {
+      console.log('🔄 Initializing auto parts database...');
+      await seedAutoPartsData();
+    } else {
+      console.log('⚠️ Skipping database seeding due to connection failure');
+    }
   } catch (error) {
     console.error('❌ Database initialization failed:', error.message);
+    console.log('🔧 The application will continue running without database functionality');
   }
 };
 

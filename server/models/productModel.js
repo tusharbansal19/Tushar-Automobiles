@@ -19,7 +19,6 @@ const productSchema = new mongoose.Schema({
   sku: {
     type: String,
     required: [true, 'SKU is required'],
-    unique: true,
     uppercase: true,
     trim: true
   },
@@ -185,7 +184,7 @@ const productSchema = new mongoose.Schema({
 productSchema.index({ name: 'text', description: 'text' });
 productSchema.index({ category: 1, status: 1 });
 productSchema.index({ brand: 1 });
-productSchema.index({ sku: 1 });
+productSchema.index({ sku: 1 }, { unique: true });
 productSchema.index({ 'price.regular': 1 });
 productSchema.index({ featured: 1, status: 1 });
 productSchema.index({ createdAt: -1 });

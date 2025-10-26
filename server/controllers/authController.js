@@ -62,6 +62,14 @@ async function signup(req, res) {
   } catch (error) {
     console.error('Signup error:', error);
     
+    // Handle MongoDB connection errors
+    if (error.name === 'MongooseError' || error.name === 'MongoNetworkError') {
+      return res.status(503).json({
+        success: false,
+        message: 'Database connection error. Please try again later.'
+      });
+    }
+    
     // Handle duplicate key error
     if (error.code === 11000) {
       return res.status(409).json({
@@ -84,9 +92,21 @@ async function signup(req, res) {
       });
     }
 
+    // Handle bcrypt errors
+    if (error.message && error.message.includes('bcrypt')) {
+      return res.status(500).json({
+        success: false,
+        message: 'Password encryption error. Please try again.'
+      });
+    }
+
     res.status(500).json({
       success: false,
-      message: 'Internal server error'
+      message: 'Internal server error',
+      ...(process.env.NODE_ENV === 'development' && { 
+        error: error.message,
+        stack: error.stack 
+      })
     });
   }
 }
