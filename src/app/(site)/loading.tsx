@@ -8,6 +8,7 @@ export default function SiteLoading() {
 
       message="Welcome to Tushar Automobiles"
       duration={2500}
+      
     // showProgress={true}
     />
   );

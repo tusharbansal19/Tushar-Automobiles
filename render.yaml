@@ -3,6 +3,7 @@ services:
     name: automobile-parts-ecommerce
     env: node
     plan: free
+    region: oregon
     buildCommand: npm install && npm run build
     startCommand: npm start
     envVars:
@@ -10,5 +11,17 @@ services:
         value: production
       - key: PORT
         value: 10000
+      - key: FRONTEND_URL
+        sync: false
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: EMAIL_USER
+        sync: false
+      - key: EMAIL_PASS
+        sync: false
+      - key: ADMIN_EMAIL
+        sync: false
     autoDeploy: true
     healthCheckPath: /api/health
